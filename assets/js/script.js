@@ -38,10 +38,24 @@ var buttonHandler = function(event) {
     }
 }
 var quiz = function() {
-
+    var question = {
+        q1: "Which is a loop?",
+        a1: "For loop",
+        q2: "How do you end a line?",
+        a2: ";",
+        q3: "how do you declare a varible",
+        a3: "var ..."
+    }
+    var randomAnswers= ["compile loop", "wheel loop", "if loop", ":", ".",
+        "endl;", "variable ...", "number ...", "vas ..."];
+    var quizScreen = document.createElement("div");
+    var question = document.createElement("h1");
+    var answers = document.createElement("ul");
+    for (var i = 0; i < randomAnswers.length / 3; i++) {
+        question.textContent = question.q1;
+    }
 };
 
-
+quiz();
 time();
-frontPage();
 body.addEventListener("click", buttonHandler);
