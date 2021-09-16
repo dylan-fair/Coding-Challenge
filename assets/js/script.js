@@ -1,10 +1,10 @@
 var highScoreBtn = document.querySelector("#high-score");
 var body = document.querySelector("#body")
 var header = document.querySelector("#header");
+var mainPage = document.createElement("div");
 var timer = 75;
 
 var frontPage = function() {
-    var mainPage = document.createElement("div");
     var title = document.createElement("h1");
     var descript = document.createElement("p");
     var start = document.createElement("button");
@@ -29,8 +29,9 @@ var time = function() {
 var buttonHandler = function(event) {
     var targetEl = event.target;
     if (targetEl.matches(".start-btn")) {
-        var removeMain = document.querySelector(".mainpage");
-        removeMain.remove();
+        console.log("hello");
+        mainPage.remove();
+        quiz();
 
     }
     else if (targetEl.matches(".btn")) {
@@ -38,24 +39,31 @@ var buttonHandler = function(event) {
     }
 }
 var quiz = function() {
-    var question = {
-        q1: "Which is a loop?",
-        a1: "For loop",
-        q2: "How do you end a line?",
-        a2: ";",
-        q3: "how do you declare a varible",
-        a3: "var ..."
-    }
-    var randomAnswers= ["compile loop", "wheel loop", "if loop", ":", ".",
-        "endl;", "variable ...", "number ...", "vas ..."];
+    var questions = ["Which is a loop?", "how to end a line in javascript?", "Whats it called when you call a function inside itself?"];
+    var answers = [["Wheel loop", "conditional loop", "for loop", "if loop"], [":", ".", ",", ";"], ["Loops", "Recursion", "science", "cool stuff"]];
+    var answerKey = [2, 3, 1];
     var quizScreen = document.createElement("div");
-    var question = document.createElement("h1");
-    var answers = document.createElement("ul");
-    for (var i = 0; i < randomAnswers.length / 3; i++) {
-        question.textContent = question.q1;
+    quizScreen.className = "quiz";
+    var questionTitle = document.createElement("h1");
+    var answersButtons = document.createElement("ul");
+    answersButtons.className = "answer-list";
+    for (var i = 0; i < questions.length; i++) {
+        var counter = 0;
+        questionTitle.textContent = questions[i];
+        quizScreen.appendChild(questionTitle);
+        for (var x = 0; x < 4; x++) {
+            var answerEl = document.createElement("li");
+            var answerbtn = document.createElement("button");
+            answerbtn.textContent = answers[i][x];
+            answerbtn.setAttribute("data-answer-id", counter);
+            answerEl.appendChild(answerbtn);
+            answersButtons.appendChild(answerEl);
+            counter++;
+        }
+        quizScreen.appendChild(answersButtons);
+        body.appendChild(quizScreen);
     }
 };
-
-quiz();
 time();
+frontPage();
 body.addEventListener("click", buttonHandler);

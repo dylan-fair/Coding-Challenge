@@ -32,3 +32,18 @@ header {
     color: white;
     font-size: 20px;
 }
+.answer-list {
+    list-style: none;
+}
+.answer-list button {
+    background-color: purple;
+    color: white;
+    font-style: normal;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 15px 20px 15px 20px;
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+.quiz {
+    text-align: center;
+}
