@@ -47,3 +47,19 @@ header {
 .quiz {
     text-align: center;
 }
+.inputScreen {
+    text-align: center;
+}
+.inputScreen h1 {
+    color: purple;
+}.high-score-screen {
+    text-align: center;
+}
+.high-score-screen h1 {
+    padding: 8px 16px 8px 16px;
+    background-color: purple;
+    color: white;
+}
+.high-score-screen h2 {
+    color: purple;
+}
