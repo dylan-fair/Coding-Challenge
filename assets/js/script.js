@@ -51,7 +51,6 @@ var timeInterval = function() {
 
 var buttonHandler = function(event) {
     var targetEl = event.target;
-    console.log(targetEl);
     if (targetEl.matches(".start-btn")) {
         mainPage.remove();
         quiz(questions[index], answers[index]);
@@ -60,13 +59,7 @@ var buttonHandler = function(event) {
     }
     else if (targetEl.matches("[data-answer-id]")) {
         var id = targetEl.getAttribute("data-answer-id");
-        if(index === questions.length -1) {
-            finalScore = timer +1;
-            timeInt = clearInterval(timeInt);
-            quizScreen.remove();
-            addScore();
-        }
-        else if (id == answerKey[index]) {
+        if (id == answerKey[index]) {
             var correct = document.createElement("h2");
             correct.textContent = "CORRECT!!!";
             quizScreen.appendChild(correct);
@@ -78,6 +71,7 @@ var buttonHandler = function(event) {
         } else {
             var incorrect = document.createElement("h2");
             incorrect.textContent = "WRONG!!!";
+            console.log("reached")
             quizScreen.appendChild(incorrect);
             timer -= 10;
             var timeout = setTimeout(function(){
@@ -86,6 +80,12 @@ var buttonHandler = function(event) {
                 quiz(questions[index], answers[index],);
             }, 1000);
         }
+        if(index === questions.length -1) {
+            finalScore = timer +1;
+            timeInt = clearInterval(timeInt);
+            quizScreen.remove();
+            addScore();
+        }
     }
     else if (targetEl.matches(".btn")) {
         mainPage.remove();
@@ -93,13 +93,16 @@ var buttonHandler = function(event) {
         showHigh();
     }
     else if (targetEl.matches(".return")) {
-        mainPage.remove();
+        mainPage.innerHTML = "";
         highScoreScreen.remove();
         quizScreen.remove();
         highScoreScreen.remove();
         inputScreen.remove();
         frontPage();
 
+    }
+    else if (targetEl.matches(".clearBtn")) {
+        clear();
     }
 }
 var quiz = function(q, a) {
@@ -141,15 +144,12 @@ var getIntial = function () {
     var finalIntial = document.getElementById("inital").value;
     initials.push(finalIntial);
     saveInitals();
-    showHigh();
 }
 var saveInitals = function() {
-    if (initials in localStorage) {
-        console.log("in")
-    }
     localStorage.setItem(initials, JSON.stringify(finalScore));
 }
 var showHigh = function() {
+    highScoreScreen.innerHTML = "";
     for (var i = 0; i < localStorage.length; i++) {
         var initial = document.createElement("h1");
         var score = document.createElement("h2");
@@ -164,6 +164,10 @@ var showHigh = function() {
     returnBtn.className = "return"
     returnBtn.textContent = "Return!";
     highScoreScreen.appendChild(returnBtn);
+    var clearBtn = document.createElement("button");
+    clearBtn.className = "clearBtn";
+    clearBtn.textContent = "Clear High Scores";
+    highScoreScreen.appendChild(clearBtn);
     body.appendChild(highScoreScreen);
 }
 var clear = function() {
@@ -171,6 +175,5 @@ var clear = function() {
 }
 time();
 frontPage();
-//showHigh();
 body.addEventListener("click", buttonHandler);
 body.addEventListener("submit", getIntial);
