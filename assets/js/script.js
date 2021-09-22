@@ -45,8 +45,9 @@ var timeInterval = function() {
         }
         clock.textContent = "Time: " + timer;
         timer--;
-    
+        endTime()
     }, 1000);
+
 }
 
 var buttonHandler = function(event) {
@@ -126,6 +127,7 @@ var quiz = function(q, a) {
     body.appendChild(quizScreen);
 };
 var addScore = function() {
+    time();
     var initial = document.createElement("form");
     var label = document.createElement("h1");
     label.setAttribute("for", "inital");
@@ -172,6 +174,14 @@ var showHigh = function() {
 }
 var clear = function() {
     localStorage.clear();
+}
+var endTime = function() {
+    if (timer === 0) {
+        finalScore = timer;
+        timeInt = clearInterval(timeInt);
+        quizScreen.remove();
+        addScore();
+    }
 }
 time();
 frontPage();
