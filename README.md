@@ -10,7 +10,7 @@ score is determined based off time!
 *Javascript
 
 ## Website
-https://dylan-fair.github.io/Coding-Challenge
+https://dylan-fair.github.io/Coding-Challenge/
 
 ## Screen Shot
-![alt text](
+![alt text](./assets/screenshot.PNG)

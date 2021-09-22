@@ -82,7 +82,7 @@ var buttonHandler = function(event) {
             }, 1000);
         }
         if(index === questions.length -1) {
-            finalScore = timer +1;
+            finalScore = timer;
             timeInt = clearInterval(timeInt);
             quizScreen.remove();
             addScore();
